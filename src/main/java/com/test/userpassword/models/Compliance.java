@@ -13,6 +13,9 @@ public class Compliance {
 
     private String reason;
 
+    public Compliance(boolean isPasswordValid, String reason) {
+    }
+
     public Long getId() {
         return id;
     }

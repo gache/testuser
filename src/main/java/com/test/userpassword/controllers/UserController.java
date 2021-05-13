@@ -1,8 +1,10 @@
 package com.test.userpassword.controllers;
 
 
+import com.test.userpassword.models.Compliance;
 import com.test.userpassword.models.User;
 
+import com.test.userpassword.services.IComplianceService;
 import com.test.userpassword.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -10,10 +12,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -27,9 +26,18 @@ public class UserController {
     @Autowired
     private final IUserService iUserService;
 
+    @Autowired
+    private final IComplianceService iComplianceService;
 
-    public UserController(IUserService iUserService) {
+
+    public UserController(IUserService iUserService, IComplianceService iComplianceService) {
         this.iUserService = iUserService;
+        this.iComplianceService = iComplianceService;
+    }
+
+    @GetMapping("/compliance/password/{password}")
+    public Compliance getPassword(String password) {
+        return iComplianceService.validatePassword(password);
     }
 
     @PostMapping("/user")
@@ -44,7 +52,7 @@ public class UserController {
                     .collect(Collectors.toList());
 
             response.put("errors", errors);
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CONFLICT);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         try {
             newUser = iUserService.save(user);
