@@ -1,31 +1,16 @@
 package com.test.userpassword.models;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "compliance")
 public class Compliance {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
 
     private boolean isValid;
 
     private String reason;
 
-    public Compliance(boolean isPasswordValid, String reason) {
-    }
-
-    public Compliance() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Compliance(boolean isValid, String reason) {
+        this.isValid = isValid;
+        this.reason = reason;
     }
 
     public boolean isValid() {
@@ -47,7 +32,6 @@ public class Compliance {
     @Override
     public String toString() {
         return "Compliance{" +
-                "id=" + id +
                 ", isValid=" + isValid +
                 ", reason='" + reason + '\'' +
                 '}';

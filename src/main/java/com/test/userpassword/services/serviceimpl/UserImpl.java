@@ -33,7 +33,6 @@ public class UserImpl implements IUserService {
 
     @Override
     public ResultValidation createuser(User user) {
-
         Compliance passwordValidation = iComplianceService.validatePassword(user.getPassword());
 
         if (!passwordValidation.isValid()) {
@@ -43,7 +42,6 @@ public class UserImpl implements IUserService {
         if (userRepository.existsByName(user.getName())) {
 
             return new ResultValidation(409, "user already exists", passwordValidation);
-
 
         } else {
             userRepository.save(user);

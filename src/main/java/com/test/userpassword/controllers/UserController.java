@@ -11,7 +11,6 @@ import com.test.userpassword.services.serviceinter.IUserService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,7 +21,6 @@ import javax.validation.Valid;
 public class UserController {
 
     private final IUserService iUserService;
-
     private final IComplianceService iComplianceService;
 
 
@@ -31,23 +29,20 @@ public class UserController {
         this.iComplianceService = iComplianceService;
     }
 
-    @GetMapping("/compliance/password/{password}")
-    public ResponseEntity<Compliance> getPassword(@PathVariable String password) {
+    @GetMapping(path = "/compliance/password", produces = "application/json")
+    public ResponseEntity<Compliance> getPassword(@RequestParam String password) {
         Compliance compliance = iComplianceService.validatePassword(password);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(compliance);
-
     }
 
     @PostMapping("/user")
-    public ResponseEntity<ValidationResponse> create(@Valid @RequestBody User user, BindingResult result) {
+    public ResponseEntity<ValidationResponse> create(@Valid @RequestBody User user) {
         ResultValidation validation = iUserService.createuser(user);
         ValidationResponse validationResponse = new ValidationResponse(validation);
 
         return ResponseEntity.status(validation.getStatusCode())
                 .body(validationResponse);
-
-
     }
 
 }

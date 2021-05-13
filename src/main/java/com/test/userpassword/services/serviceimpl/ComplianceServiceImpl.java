@@ -1,9 +1,7 @@
 package com.test.userpassword.services.serviceimpl;
 
 import com.test.userpassword.models.Compliance;
-import com.test.userpassword.repositories.ComplianceRepository;
 import com.test.userpassword.services.serviceinter.IComplianceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,18 +11,12 @@ import java.util.stream.Collectors;
 @Service
 public class ComplianceServiceImpl implements IComplianceService {
 
-    private final ComplianceRepository complianceRepository;
-
-    public ComplianceServiceImpl(ComplianceRepository complianceRepository) {
-        this.complianceRepository = complianceRepository;
-    }
-
     @Override
     public Compliance validatePassword(String password) {
         boolean isPasswordValid = true;
-        final String MUST_CONTAIN_ONE_UPPERCASE_LETTER = "[A-Z]+";
-        final String MUST_CONTAIN_ONE_DIGIT = "[0-9]+ ";
-        final String MUST_CONTAIN_ONE_SPECIAL_CHARACTER = "[!&$%@]+";
+        final String MUST_CONTAIN_ONE_UPPERCASE_LETTER = "^.*[A-Z]+.*$";
+        final String MUST_CONTAIN_ONE_DIGIT = "^.*[0-9]+.*$";
+        final String MUST_CONTAIN_ONE_SPECIAL_CHARACTER = "^.*[!&$%@]+.*$";
 
         List<String> reasonsForInvalidPassword = new ArrayList<>();
 
