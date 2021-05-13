@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/compliance/password/{password}")
-    public Compliance getPassword(String password) {
+    public Compliance getPassword(@PathVariable String password) {
         return iComplianceService.validatePassword(password);
     }
 
