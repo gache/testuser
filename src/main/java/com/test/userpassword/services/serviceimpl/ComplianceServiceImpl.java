@@ -1,7 +1,8 @@
-package com.test.userpassword.services;
+package com.test.userpassword.services.serviceimpl;
 
 import com.test.userpassword.models.Compliance;
 import com.test.userpassword.repositories.ComplianceRepository;
+import com.test.userpassword.services.serviceinter.IComplianceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,6 @@ import java.util.stream.Collectors;
 @Service
 public class ComplianceServiceImpl implements IComplianceService {
 
-    @Autowired
     private final ComplianceRepository complianceRepository;
 
     public ComplianceServiceImpl(ComplianceRepository complianceRepository) {

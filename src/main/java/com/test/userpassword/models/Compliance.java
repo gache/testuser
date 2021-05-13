@@ -16,6 +16,10 @@ public class Compliance {
     public Compliance(boolean isPasswordValid, String reason) {
     }
 
+    public Compliance() {
+
+    }
+
     public Long getId() {
         return id;
     }
