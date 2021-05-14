@@ -3,7 +3,6 @@ package com.test.userpassword.models;
 
 public class Compliance {
 
-
     private boolean isValid;
 
     private String reason;

@@ -13,8 +13,6 @@ public class ResultValidation {
         this.result = result;
     }
 
-
-
     public int getStatusCode() {
         return statusCode;
     }

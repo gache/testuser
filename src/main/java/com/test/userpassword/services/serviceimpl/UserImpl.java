@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserImpl implements IUserService {
 
-
     private final UserRepository userRepository;
     private final IComplianceService iComplianceService;
 
@@ -22,21 +21,11 @@ public class UserImpl implements IUserService {
     }
 
     @Override
-    public User save(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public boolean existsByName(String name) {
-        return userRepository.existsByName(name);
-    }
-
-    @Override
     public ResultValidation createuser(User user) {
         Compliance passwordValidation = iComplianceService.validatePassword(user.getPassword());
 
         if (!passwordValidation.isValid()) {
-            return new ResultValidation(400, "password is not compliance", passwordValidation);
+            return new ResultValidation(400, "password is not Compliant", passwordValidation);
         }
 
         if (userRepository.existsByName(user.getName())) {
@@ -48,8 +37,6 @@ public class UserImpl implements IUserService {
             return new ResultValidation(201, "user is create", passwordValidation);
         }
 
-
     }
-
 
 }
