@@ -29,8 +29,8 @@ public class UserController {
         this.iComplianceService = iComplianceService;
     }
 
-    @GetMapping(path = "/compliance/password", produces = "application/json")
-    public ResponseEntity<Compliance> getPassword(@RequestParam String password) {
+    @GetMapping(path = "/compliance/password/{password}")
+    public ResponseEntity<Compliance> getPassword(@PathVariable("password") String password) {
         Compliance compliance = iComplianceService.validatePassword(password);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(compliance);
