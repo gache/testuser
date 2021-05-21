@@ -7,6 +7,6 @@ import com.test.userpassword.models.User;
 
 public interface IUserService {
 
-    ResultValidation createuser(User user);
+    ResultValidation createUser(User user);
 
 }

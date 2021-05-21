@@ -4,13 +4,10 @@ public class ResultValidation {
 
     private final int statusCode;
     private final String description;
-    private final Compliance result;
 
-
-    public ResultValidation(int statusCode, String description, Compliance result) {
+    public ResultValidation(int statusCode, String description) {
         this.statusCode = statusCode;
         this.description = description;
-        this.result = result;
     }
 
     public int getStatusCode() {
@@ -21,7 +18,4 @@ public class ResultValidation {
         return description;
     }
 
-    public Compliance getResult() {
-        return result;
-    }
 }

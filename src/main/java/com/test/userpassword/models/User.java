@@ -21,7 +21,7 @@ public class User {
     private String phone;
 
     @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 100)
     @NotEmpty(message = "Ce champ ne peut pas être vide")
     private String password;
 
